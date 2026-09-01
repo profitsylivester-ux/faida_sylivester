@@ -146,7 +146,7 @@ function NavAnchor({
   }
 
   return (
-    <Link to={href} className={cls} onClick={onClick} aria-current={active ? "page" : undefined}>
+    <Link to={href as "/blog"} className={cls} onClick={onClick} aria-current={active ? "page" : undefined}>
       {inner}
     </Link>
   );

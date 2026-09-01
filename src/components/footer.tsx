@@ -43,7 +43,7 @@ export function Footer() {
                 </li>
               ) : (
                 <li key={item.label}>
-                  <Link className="text-muted-foreground transition-colors hover:text-primary" to={item.href}>
+                  <Link className="text-muted-foreground transition-colors hover:text-primary" to={item.href as "/blog"}>
                     {item.label}
                   </Link>
                 </li>
