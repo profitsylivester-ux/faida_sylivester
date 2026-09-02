@@ -13,8 +13,15 @@ export default defineConfig({
     server: { entry: "server" },
   },
   nitro: {
-    // Build for a Node HTTP server (Render) instead of the Cloudflare worker default.
-    // The Lovable sandbox still forces cloudflare-module, so this is safe there.
-    preset: process.env.LOVABLE_NITRO_PRESET === "cloudflare-module" ? "cloudflare-module" : "node-server",
+    // Choose the right Nitro output target. The Lovable sandbox forces cloudflare-module
+    // on its own, so this only affects external platforms:
+    //   - Vercel  -> `vercel` preset (emits .vercel/output)
+    //   - Render  -> `node-server` preset (Node HTTP server via PORT)
+    preset:
+      process.env.VERCEL === "1"
+        ? "vercel"
+        : process.env.LOVABLE_NITRO_PRESET === "cloudflare-module"
+          ? "cloudflare-module"
+          : "node-server",
   },
 });
