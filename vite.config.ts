@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  nitro: {
+    // Build for a Node HTTP server (Render) instead of the Cloudflare worker default.
+    // The Lovable sandbox still forces cloudflare-module, so this is safe there.
+    preset: process.env.LOVABLE_NITRO_PRESET === "cloudflare-module" ? "cloudflare-module" : "node-server",
+  },
 });
