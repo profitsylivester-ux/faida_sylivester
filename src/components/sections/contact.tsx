@@ -6,11 +6,13 @@ import { Reveal } from "@/components/reveal";
 
 type Errors = Partial<Record<"name" | "email" | "subject" | "message", string>>;
 
+const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+
 export function Contact() {
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -33,17 +35,39 @@ export function Contact() {
     if (honeypot) {
       // Spam bot filled the hidden field — silently succeed.
       setStatus("sent");
+      form.reset();
       return;
     }
 
-    const mail = site.email && !site.email.includes("example.com") ? site.email : "";
-    if (mail) {
-      window.location.href = `mailto:${mail}?subject=${encodeURIComponent(
-        subject,
-      )}&body=${encodeURIComponent(`${message}\n\n— ${name} (${email})`)}`;
+    if (!FORMSPREE_ENDPOINT) {
+      // Fallback to the visitor's email client if no Formspree endpoint is configured.
+      const mail = site.email && !site.email.includes("example.com") ? site.email : "";
+      if (mail) {
+        window.location.href = `mailto:${mail}?subject=${encodeURIComponent(
+          subject,
+        )}&body=${encodeURIComponent(`${message}\n\n— ${name} (${email})`)}`;
+      }
+      setStatus("sent");
+      form.reset();
+      return;
     }
-    setStatus("sent");
-    form.reset();
+
+    setStatus("sending");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
   }
 
   const details = [
@@ -132,12 +156,18 @@ export function Contact() {
               </button>
 
               <p aria-live="polite" className="text-sm">
-                {status === "sent" ? (
+                {status === "sending" ? (
+                  <span className="text-muted-foreground">Sending…</span>
+                ) : status === "sent" ? (
                   <span className="text-signal">
-                    Thanks — your message is ready to send from your email client.
+                    Thanks — your message has been sent. Faida will get back to you.
                   </span>
                 ) : status === "error" ? (
-                  <span className="text-destructive">Please fix the highlighted fields and try again.</span>
+                  <span className="text-destructive">
+                    {Object.keys(errors).length
+                      ? "Please fix the highlighted fields and try again."
+                      : "Something went wrong sending your message. Please try again."}
+                  </span>
                 ) : null}
               </p>
             </form>
