@@ -14,6 +14,7 @@ export const site = {
   github: "https://github.com/profitsylivester-ux",
   linkedin: "https://www.linkedin.com/in/faida-sylivester-31b86a391/",
   cvUrl: "https://docs.google.com/document/d/1HyLJfXnDwWc2uioFWk6xXD8H41htObqk/export?format=pdf", // Google Doc exported as PDF
+  contactFormEndpoint: "https://formspree.io/f/xljelrwe",
   intro:
     "A creative and innovative engineering student passionate about building practical technology solutions — focused on electronics, embedded systems, IoT, automation, telecommunications, networking, software and AI.",
 } as const;

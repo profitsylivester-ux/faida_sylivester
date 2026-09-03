@@ -6,7 +6,7 @@ import { Reveal } from "@/components/reveal";
 
 type Errors = Partial<Record<"name" | "email" | "subject" | "message", string>>;
 
-const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT as string | undefined;
+const FORMSPREE_ENDPOINT = site.contactFormEndpoint;
 
 export function Contact() {
   const [errors, setErrors] = useState<Errors>({});
