@@ -1,5 +1,5 @@
 import { ArrowRight, Download, Mail } from "lucide-react";
-import profile from "@/assets/faida-profile.jpg.asset.json";
+import profile from "@/assets/faida-profile.jpg";
 import { site } from "@/data/site";
 import { CircuitTraces, NodeNetwork, Waveform } from "@/components/circuit-decor";
 
@@ -86,7 +86,7 @@ export function Hero() {
               aria-hidden="true"
             />
             <img
-              src={profile.url}
+              src={profile}
               alt="Portrait of Faida Sylivester Mosses"
               width={891}
               height={1188}
