@@ -9,11 +9,10 @@ export const site = {
   title: "Electronics & Embedded Systems Engineer",
   brand: "ProfitxTech",
   location: "Dar es Salaam, Tanzania",
-  // TODO: replace placeholders below with real contact details.
-  email: "your.email@example.com", // TODO
-  phone: "+255 000 000 000", // TODO
-  github: "", // TODO: e.g. https://github.com/username
-  linkedin: "", // TODO: e.g. https://linkedin.com/in/username
+  email: "profitsylivester@gmail.com",
+  phone: "+255 748 743 673",
+  github: "https://github.com/profitsylivester-ux",
+  linkedin: "https://www.linkedin.com/in/faida-sylivester-31b86a391/",
   cvUrl: "https://docs.google.com/document/d/1HyLJfXnDwWc2uioFWk6xXD8H41htObqk/export?format=pdf", // Google Doc exported as PDF
   intro:
     "A creative and innovative engineering student passionate about building practical technology solutions — focused on electronics, embedded systems, IoT, automation, telecommunications, networking, software and AI.",

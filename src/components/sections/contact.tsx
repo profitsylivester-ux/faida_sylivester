@@ -167,9 +167,6 @@ export function Contact() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 text-xs text-muted-foreground">
-                Contact values are editable placeholders until real details are provided.
-              </p>
             </div>
 
             <div className="card-elevated p-6">

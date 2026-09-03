@@ -69,7 +69,7 @@ export function Footer() {
             </li>
           </ul>
           <p className="mt-3 font-mono text-[0.7rem] text-muted-foreground/70">
-            Contact details are placeholders — update in src/data/site.ts
+            © {new Date().getFullYear()} {site.name}
           </p>
         </div>
       </div>
