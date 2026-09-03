@@ -14,7 +14,7 @@ export const site = {
   phone: "+255 000 000 000", // TODO
   github: "", // TODO: e.g. https://github.com/username
   linkedin: "", // TODO: e.g. https://linkedin.com/in/username
-  cvUrl: "", // TODO: upload a PDF and put its URL here
+  cvUrl: "https://docs.google.com/document/d/1HyLJfXnDwWc2uioFWk6xXD8H41htObqk/export?format=pdf", // Google Doc exported as PDF
   intro:
     "A creative and innovative engineering student passionate about building practical technology solutions — focused on electronics, embedded systems, IoT, automation, telecommunications, networking, software and AI.",
 } as const;

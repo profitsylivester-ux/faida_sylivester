@@ -48,7 +48,8 @@ export function Hero() {
               View My Projects <ArrowRight className="h-4 w-4" />
             </a>
             <a
-              href="#resume"
+              href={site.cvUrl}
+              download
               className="inline-flex h-11 items-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-semibold transition-colors hover:border-primary/50 hover:text-primary"
             >
               <Download className="h-4 w-4" /> Download CV
